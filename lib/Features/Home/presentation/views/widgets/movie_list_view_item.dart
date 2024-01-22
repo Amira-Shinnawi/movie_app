@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:movie_app/Features/Home/presentation/manager/cubit/movies_cubit.dart';
+import 'package:go_router/go_router.dart';
+import 'package:movie_app/core/utils/app_router.dart';
 
+import '../../manager/display_all_movies/movies_cubit.dart';
 import 'movie_details.dart';
 
 class MovieListViewItem extends StatelessWidget {
@@ -19,10 +21,16 @@ class MovieListViewItem extends StatelessWidget {
             padding: EdgeInsets.zero,
             itemCount: state.movies.length,
             itemBuilder: (context, index) {
-              return  Padding(
-                padding:const EdgeInsets.symmetric(vertical: 10),
-                child: MovieDetails(
-                  movieModel:state.movies[index] ,
+              return Padding(
+                padding: const EdgeInsets.symmetric(vertical: 10),
+                child: GestureDetector(
+                  onTap: () {
+                    GoRouter.of(context).push(AppRouter.kMovieDetailsView,
+                        extra: state.movies[index]);
+                  },
+                  child: MovieDetails(
+                    movieModel: state.movies[index],
+                  ),
                 ),
               );
             },

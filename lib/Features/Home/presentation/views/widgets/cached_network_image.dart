@@ -15,7 +15,7 @@ class CachedNetwokImage extends StatelessWidget {
     return AspectRatio(
       aspectRatio: 2.6 / 4,
       child: CachedNetworkImage(
-        fit: BoxFit.fill,
+        fit: BoxFit.cover,
         imageUrl: movieModel.posterPath != null
             ? 'https://image.tmdb.org/t/p/w500${movieModel.posterPath}'
             : 'https://user-images.githubusercontent.com/47315479/81145216-7fbd8700-8f7e-11ea-9d49-bd5fb4a888f1.png',
